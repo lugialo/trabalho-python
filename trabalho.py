@@ -1,12 +1,13 @@
 import os
+import re
 
 
 def selecionar_opcao():
     while True:
-        opcao = int(input(f'Qual opção você deseja gerenciar?'
-                          f'\n1- Estoque'
-                          f'\n2- Pessoas'
-                          f'\n3- Sair do programa: '))
+        opcao = int(input('Qual opção você deseja gerenciar?'
+                          '\n1- Estoque'
+                          '\n2- Pessoas'
+                          '\n3- Sair do programa: '))
         os.system('cls')
         return opcao
 
@@ -14,6 +15,11 @@ def selecionar_opcao():
 def selecionar_contato():
     contato = input(f'Digite o número de contato.')
     return contato
+
+
+def selecionar_cpf():
+    cpf = input('Digite o CPF: ')
+    return cpf
 
 
 lista_estoque = []
@@ -31,12 +37,12 @@ while True:
 
     if opcao == 1:
         while True:
-            print(f'--- Estoque ---'
-                  f'\n1- Adicionar produto'
-                  f'\n2- Atualizar disponibilidade'
-                  f'\n3- Verificar disponibilidade'
-                  f'\n4- Remover produto'
-                  f'\n5- Voltar ao menu principal')
+            print('--- Estoque ---'
+                  '\n1- Adicionar produto'
+                  '\n2- Atualizar disponibilidade'
+                  '\n3- Verificar disponibilidade'
+                  '\n4- Remover produto'
+                  '\n5- Voltar ao menu principal')
             fazer = int(input('Digite o número do que deseja fazer: '))
             os.system('cls')
 
@@ -78,20 +84,27 @@ while True:
 
     elif opcao == 2:
         while True:
-            print(f'--- Pessoas ---'
-                  f'\n1 - Cadastrar cliente'
-                  f'\n2 - Excluir cadastro do cliente'
-                  f'\n3 - Cadastrar funcionário'
-                  f'\n4 - Excluir cadastro do funcionário'
-                  f'\n5 - Voltar ao menu principal')
-            fazer = int(input('Digite o número do que deseja fazer: '))
+            print('--- Pessoas ---'
+                  '\n1 - Cadastrar cliente'
+                  '\n2 - Excluir cadastro do cliente'
+                  '\n3 - Cadastrar funcionário'
+                  '\n4 - Excluir cadastro do funcionário'
+                  '\n5 - Voltar ao menu principal')
+            fazer = int(input('Digite o número da ação desejada: '))
             os.system('cls')
 
             if fazer == 1:
                 os.system('cls')
-                nome = input('Digite o nome do cliente: ')
-                cpf = int(input('Digite o CPF do cliente: '))
-                contato = int(input('Digite o número de contato: '))
+                nome = input('Digite o nome: ')
+                cpf = (input('Digite o CPF: '))
+                if not re.match(r'^\d{11}$', cpf):
+                    print('CPF inválido!')
+                    cpf = selecionar_cpf()
+                contato = (input('Digite o número de contato: '))
+                if not re.match(r'^\d{11}$', contato):
+                    print(
+                        'Número de contato inválido! Deve conter no mínimo 11 números.')
+                    contato = selecionar_contato()
                 clientes['nome'] = nome
                 clientes['cpf'] = cpf
                 clientes['contato'] = contato
