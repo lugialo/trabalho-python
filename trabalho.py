@@ -103,7 +103,7 @@ while True:
                 contato = (input('Digite o número de contato: '))
                 if not re.match(r'^\d{11}$', contato):
                     print(
-                        'Número de contato inválido! Deve conter no mínimo 11 números.')
+                        'Número de contato inválido! Deve conter no mínimo 11 dígitos.')
                     contato = selecionar_contato()
                 clientes['nome'] = nome
                 clientes['cpf'] = cpf
@@ -126,6 +126,8 @@ while True:
                 os.system('cls')
                 cracha = len(lista_funcionarios)
                 contato = input('Digite o número de contato: ')
+                if not re.match(r'^\d{11}$', contato):
+                    contato = selecionar_contato()
                 funcao = input('Digite a função do funcionário: ')
             elif fazer == 4:
                 os.system('cls')
