@@ -1,5 +1,5 @@
-import os # Libraria utilizada para utilizar o metódo de limpar a tela
-import re # Libraria utilizada para as verificações de número de contato e CPF
+import os # Biblioteca utilizada para utilizar o metódo de limpar a tela
+import re # Biblioteca utilizada para as verificações de número de contato e CPF
 
 
 def selecionar_opcao(): # Nessa função, estão as opções do menu principal
@@ -38,6 +38,7 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
 
     if opcao == 1:
         while True: #Submenu de Estoque
+            os.system('cls')
             print('--- Estoque ---'
                   '\n1- Adicionar produto'
                   '\n2- Atualizar disponibilidade'
@@ -56,21 +57,21 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
                 estoque['Validade'] = vali
                 estoque['Disponibilidade'] = dispon
                 lista_estoque.append(estoque.copy()) 
-                print(lista_estoque)
             elif fazer == 2:
                 os.system('cls')
-                print(len(lista_estoque))
+                print('Produtos registrados até o momento:')
+                for i in range(len(lista_estoque)):
+                    print(f'Número: {i}, {lista_estoque[i]}')
                 atu = int(
                     input(f'Qual o índice de 0 a {len(lista_estoque)-1} a atualizar? ')) #Utilizamos -1 para mostrar o índice corretamente
                 dispon = int(input('Qual a nova quantidade? '))
-                lista_estoque[atu]['disponibilidade'] = dispon # O sistema atualiza a disponibilidade do item da lista conforme o input do usuário
-                print(lista_estoque)
+                lista_estoque[atu]['Disponibilidade'] = dispon # O sistema atualiza a disponibilidade do item da lista conforme o input do usuário
+                print(lista_estoque[atu])
             elif fazer == 3:
                 os.system('cls')
                 ver = int(input(
                     f'Digite o índice de 0 a {len(lista_estoque)-1} do produto que deseja verificar a disponibilidade: '))
                 print(lista_estoque[ver]) # O print mostra o produto do índice que o usuário digitou.
-                print(lista_estoque)
             elif fazer == 4:
                 os.system('cls')
                 print('Produtos registrados até o momento:')
@@ -79,7 +80,6 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
                 remover = int(
                     input(f'Digite o índice de 0 a {len(lista_estoque)-1} do produto a remover: '))
                 lista_estoque.pop(remover)
-                print(lista_estoque)
             elif fazer == 5:
                 os.system('cls')
                 break
@@ -113,7 +113,6 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
                 clientes['Cpf'] = cpf
                 clientes['Contato'] = contato
                 lista_clientes.append(clientes.copy())
-                print(lista_clientes)
             elif fazer == 2:
                 os.system('cls')
                 print(len(lista_clientes))
@@ -129,7 +128,6 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
                     remover = int(
                         input(f'Digite o índice de 0 a {len(lista_clientes)-1} do cliente a remover: '))
                     lista_clientes.pop(remover)
-                    print(lista_clientes)
             elif fazer == 3:
                 os.system('cls')
                 nome = input('Digite o nome do funcionário: ')
@@ -155,7 +153,6 @@ while True: # No começo do loop, ele sempre vai executar a função de selecion
                     remover = int(
                         input(f'Digite o índice de 0 a {len(lista_funcionarios)-1} do funcionário a remover: '))
                     lista_funcionarios.pop(remover)
-                    print(lista_funcionarios)
             elif fazer == 5: # Caso o usuário digite uma opção que não esteja no submenu, o sistema pedirá para que ele insira novamente.
                 break
             else:
